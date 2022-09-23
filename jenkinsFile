@@ -1,0 +1,28 @@
+pipeline{
+
+    agent any
+
+    stages{
+        stage('Clone git repo'){
+            steps{
+                git 'https://github.com/nagasesha999/CypressDemoJenkins.git'
+            }
+        }
+        stage('Install dependancies'){
+            steps{
+                bat 'npm install'
+            }
+        }
+        stage('Run Tests'){
+            steps{
+                bat 'npm test'
+            }
+        }
+        stage('Publish HTML Reports'){
+            steps{
+                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'cypress/reports/html', reportFiles:'index,html', reportName: 'HTML Report', reportTitles: ''])
+            }
+        }
+    }
+
+}
