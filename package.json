@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "cypress run",
-    "cy:chrome":"cypress run --broser chrome"
+    "cy:chrome":"cypress run --browser chrome"
   },
   "author": "seshu",
   "license": "ISC",
