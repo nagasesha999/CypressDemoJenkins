@@ -9,6 +9,8 @@
   "author": "seshu",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^10.8.0"
+    "cypress": "^10.8.0",
+    "cypress-mochawesome-reporter": "^3.2.2",
+    "mocha-simple-html-reporter": "^2.0.0"
   }
 }
