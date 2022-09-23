@@ -1,12 +1,7 @@
-pipeline{
-
+pipeline {
     agent any
 
-    
-
-    
-
-    stages{
+    stages {
         stage('Install Dependencies') {
             steps {
                 bat 'npm install'
@@ -14,37 +9,37 @@ pipeline{
         }
 
         stage('Execute Test') {
-        steps {
-            catchError(stageResult: 'FAILURE'){
+            steps {
                 bat 'npx cypress run '
-                        
             }
         }
-                
-    }
-        
+
         stage('Publish Report') {
             steps {
-                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'cypress/reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
+                publishHTML([allowMissing: false,
+                 alwaysLinkToLastBuild: false,
+                  keepAll: true, 
+                  reportDir: 'cypress/reports',
+                   reportFiles: 'index.html',
+                    reportName: 'HTML Report', reportTitles: ''])
             }
         }
         stage('Archive Artifacts') {
-            steps{
+            steps {
                 archiveArtifacts artifacts: 'cypress/reports/index.html', followSymlinks: false
             }
         }
-       
-       stage('Copy Artifacts'){
-          steps{
-              script {
-                  step ([$class: 'CopyArtifact',
+
+        stage('Copy Artifacts') {
+            steps {
+                script {
+                    step([$class: 'CopyArtifact',
                     projectName: 'CypressTestPipeline',
                     selector:specific("$BUILD_NUMBER"),
-                    filter: "**/index.html",
-                    target: 'C:/Archeived_Reports/$BUILD_NUMBER/$BUILD_TIMESTAMP']);
-              }
-          }
-       }
-       
+                    filter: '**/index.html',
+                    target: 'C:/Archeived_Reports/$BUILD_NUMBER/$BUILD_TIMESTAMP'])
+                }
+            }
+        }
     }
 }
