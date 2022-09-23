@@ -2,27 +2,49 @@ pipeline{
 
     agent any
 
+    
+
+    
+
     stages{
-        stage('Clone git repo'){
-            steps{
-                git 'https://github.com/nagasesha999/CypressDemoJenkins.git'
-            }
-        }
-        stage('Install dependancies'){
-            steps{
+        stage('Install Dependencies') {
+            steps {
                 bat 'npm install'
             }
         }
-        stage('Run Tests'){
-            steps{
-                bat 'npm test'
-            }
-        }
-        stage('Publish HTML Reports'){
-            steps{
-                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'cypress/reports/html', reportFiles:'index,html', reportName: 'HTML Report', reportTitles: ''])
-            }
-        }
-    }
 
+        stage('Execute Test') {
+        steps {
+            catchError(stageResult: 'FAILURE'){
+                bat 'npx cypress run '
+                        
+            }
+        }
+                
+    }
+        
+        stage('Publish Report') {
+            steps {
+                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'cypress/reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
+            }
+        }
+        stage('Archive Artifacts') {
+            steps{
+                archiveArtifacts artifacts: 'cypress/reports/index.html', followSymlinks: false
+            }
+        }
+       
+       stage('Copy Artifacts'){
+          steps{
+              script {
+                  step ([$class: 'CopyArtifact',
+                    projectName: 'CypressTestPipeline',
+                    selector:specific("$BUILD_NUMBER"),
+                    filter: "**/index.html",
+                    target: 'C:/Archeived_Reports/$BUILD_NUMBER/$BUILD_TIMESTAMP']);
+              }
+          }
+       }
+       
+    }
 }
