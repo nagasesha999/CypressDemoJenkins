@@ -3,7 +3,7 @@ pipeline {
 parameters {
   choice choices: ['SET1', 'SET2'], name: 'Section'
    checkboxParameter(name: 'Section', format: 'JSON',
-            pipelineSubmitContent: '{"CheckboxParameter": [{"key": "SET1","value": "**/1-getting-started/*.cy.js"},{"key": "SET2","value": "**/2-advanced-examples/*.cy.js"}]}', description: '')
+            pipelineSubmitContent: '{"checkboxParameter": [{"key": "SET1","value": "**/1-getting-started/*.cy.js"},{"key": "SET2","value": "**/2-advanced-examples/*.cy.js"}]}', description: '')
   
 }
 
