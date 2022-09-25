@@ -16,12 +16,7 @@ parameters {
         }
         stage('Execute Test') {
             steps {
-                if('%Browser%' == 'Default'){
-                    bat 'npx cypress run';
-                }else{
-                    bat 'npx cypress run --browser %Browser%'
-                }
-                
+                    bat 'npx cypress run';               
             }
         }
         stage('Publish Report') {
