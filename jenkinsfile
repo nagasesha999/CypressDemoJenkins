@@ -16,7 +16,7 @@ parameters {
         }
         stage('Execute Test') {
             steps {
-                if(bat '%Browser%' == 'Default'){
+                if('%Browser%' == 'Default'){
                     bat 'npx cypress run';
                 }else{
                     bat 'npx cypress run --browser %Browser%'
