@@ -1,28 +1,24 @@
 pipeline {
     agent any
-
     stages {
         stage('Install Dependencies') {
             steps {
-                bat 'npm install'
+               bat 'npm install'
             }
         }
-
         stage('Execute Test') {
             steps {
-                bat 'npx cypress run '
+                bat 'npx cypress run'
             }
         }
-
         stage('Publish Report') {
             steps {
                 publishHTML([allowMissing: false,
                  alwaysLinkToLastBuild: false,
-                  keepAll: true, 
-                  reportDir: 'cypress/reports',
+                  keepAll: false, reportDir: 'cypress/reports',
                    reportFiles: 'index.html',
-                    reportName: 'HTML Report', reportTitles: ''])
-            }
+                    reportName: 'HTML Report', 
+                    reportTitles: '', useWrapperFileDirectly: true])
         }
-           }
+    }
 }
