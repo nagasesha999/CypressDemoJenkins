@@ -22,17 +22,7 @@ pipeline {
             }
         }
        
-       stage('Copy Artifacts'){
-          steps{
-              script {
-                  step ([$class: 'CopyArtifact',
-                    projectName: 'cypresspractice',
-                    selector:specific("$BUILD_NUMBER"),
-                    filter: "**/index.html",
-                    target: 'C:/Archeived_Reports/$BUILD_NUMBER/$BUILD_TIMESTAMP']);
-              }
-          }
-       }
+       
        
     } 
 }
