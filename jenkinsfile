@@ -3,9 +3,9 @@ pipeline {
 
  
 
-    options {
-        copyArtifactPermission 'cypresspractice'
-    }
+    // options {
+    //     copyArtifactPermission 'cypresspractice'
+    // }
 
     stages {
         stage('Install Dependencies') {
@@ -29,18 +29,18 @@ pipeline {
             }
         }
        
-       stage('Copy Artifacts'){
-          steps{
-              script {
-                  step ([$class: 'CopyArtifact',
-                    projectName: 'cypresspractice',
-                    selector:specific("$BUILD_NUMBER"),
-                    filter: "**/index.html",
-                    target: 'c:/Archeived_Reports/$BUILD_NUMBER/$BUILD_TIMESTAMP'
-                    ]);
-              }
-          }
-       }
+    //    stage('Copy Artifacts'){
+    //       steps{
+    //           script {
+    //               step ([$class: 'CopyArtifact',
+    //                 projectName: 'cypresspractice',
+    //                 selector:specific("$BUILD_NUMBER"),
+    //                 filter: "**/index.html",
+    //                 target: 'c:/Archeived_Reports/$BUILD_NUMBER/$BUILD_TIMESTAMP'
+    //                 ]);
+    //           }
+    //       }
+    //    }
        
     } 
 }
