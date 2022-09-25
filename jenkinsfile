@@ -1,11 +1,11 @@
 pipeline {
     agent any
-parameters {
-  choice choices: ['SET1', 'SET2'], name: 'Section'
-   checkboxParameter(name: 'Section', format: 'JSON',
-            pipelineSubmitContent: '{"checkboxParameter": [{"key": "SET1","value": "**/1-getting-started/*.cy.js"},{"key": "SET2","value": "**/2-advanced-examples/*.cy.js"}]}', description: '')
-  
-}
+        // parameters {
+        // choice choices: ['SET1', 'SET2'], name: 'Section'
+        // checkboxParameter(name: 'Section', format: 'JSON',
+        //             pipelineSubmitContent: '{"checkboxParameter": [{"key": "SET1","value": "**/1-getting-started/*.cy.js"},{"key": "SET2","value": "**/2-advanced-examples/*.cy.js"}]}', description: '')
+        
+        // }
 
     // options {
     //     copyArtifactPermission 'cypresspractice'
