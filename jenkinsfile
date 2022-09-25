@@ -1,7 +1,10 @@
 pipeline {
     agent any
 parameters {
-  choice choices: ['Default', 'Chrome'], name: 'Browser'
+  choice choices: ['SET1', 'SET2'], name: 'Section'
+   checkboxParameter(name: 'Section', format: 'JSON',
+            pipelineSubmitContent: '{"CheckboxParameter": [{"key": "SET1","value": "**/1-getting-started/*.cy.js"},{"key": "SET2","value": "**/2-advanced-examples/*.cy.js"}]}', description: '')
+  
 }
 
     // options {
@@ -16,7 +19,9 @@ parameters {
         }
         stage('Execute Test') {
             steps {
-                    bat 'npx cypress run';               
+                   catchError(stageResult: 'FAILURE'){
+                bat 'npx cypress run --spec %Section%'
+                }            
             }
         }
         stage('Publish Report') {
