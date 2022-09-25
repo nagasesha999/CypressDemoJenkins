@@ -20,7 +20,7 @@ pipeline {
         stage('Execute Test') {
             steps {
                   
-                bat 'npx cypress run 
+                bat 'npx cypress run'
             }
         }
         stage('Publish Report') {
