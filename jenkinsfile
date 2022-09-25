@@ -29,7 +29,7 @@ pipeline {
                     projectName: 'CypressTestPipeline',
                     selector:specific("$BUILD_NUMBER"),
                     filter: "**/index.html",
-                    target: 'Archeived_Reports/$BUILD_NUMBER/$BUILD_TIMESTAMP']);
+                    // target: 'Archeived_Reports/$BUILD_NUMBER/$BUILD_TIMESTAMP']);
               }
           }
        }
