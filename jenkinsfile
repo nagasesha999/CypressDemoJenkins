@@ -1,7 +1,8 @@
 pipeline {
     agent any
-
- 
+parameters {
+  choice choices: ['Default', 'Chrome'], name: 'Browser'
+}
 
     // options {
     //     copyArtifactPermission 'cypresspractice'
@@ -15,7 +16,12 @@ pipeline {
         }
         stage('Execute Test') {
             steps {
-                bat 'npx cypress run';
+                if('%Browser' == 'Default'){
+                    bat 'npx cypress run';
+                }else{
+                    bat 'npx cypress run --browser %Browser%'
+                }
+                
             }
         }
         stage('Publish Report') {
