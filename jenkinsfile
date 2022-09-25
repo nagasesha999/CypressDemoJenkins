@@ -19,9 +19,8 @@ pipeline {
         }
         stage('Execute Test') {
             steps {
-                   catchError(stageResult: 'FAILURE'){
-                bat 'npx cypress run --spec %Section%'
-                }            
+                  
+                bat 'npx cypress run 
             }
         }
         stage('Publish Report') {
