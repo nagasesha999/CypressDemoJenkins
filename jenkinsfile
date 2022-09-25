@@ -1,5 +1,18 @@
 pipeline {
     agent any
+
+ parameters {
+        choice choices: ['Default', 'Chrome','Firefox'], name: 'Browser'
+        choice choices: ['UAT2', 'UAT3', 'UAT4', 'QA', 'QA2'], name: 'Environment'
+        checkboxParameter(name: 'Modules', format: 'JSON',
+            pipelineSubmitContent: '{"CheckboxParameter": [{"key": "LandingPage","value": "**/LandingPage/*.spec.js"},{"key": "Login","value": "**/Login/*.spec.js"},{"key": "Shop","value": "**/ShopPage/*.spec.js"}]}', description: '')
+    }
+
+    options {
+        ansiColor('xterm')
+        copyArtifactPermission 'cypresspractice'
+    }
+
     stages {
         stage('Install Dependencies') {
             steps {
@@ -8,7 +21,12 @@ pipeline {
         }
         stage('Execute Test') {
             steps {
-                bat 'npx cypress run'
+                if('%Browser%' == 'Default'){
+                    bat 'npx cypress run';
+                }else{
+                    bat 'npx cypress run --browser %Browser%';
+                }
+               
             }
         }
         stage('Publish Report') {
@@ -26,7 +44,7 @@ pipeline {
           steps{
               script {
                   step ([$class: 'CopyArtifact',
-                    projectName: 'CypressTestPipeline',
+                    projectName: 'cypresspractice',
                     selector:specific("$BUILD_NUMBER"),
                     filter: "**/index.html",
                     target: 'Archeived_Reports/$BUILD_NUMBER/$BUILD_TIMESTAMP'
