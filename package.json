@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "cypress run",
-    "cy:chrome":"cypress run --browser chrome"
+    "cy:chrome":"cypress run --browser chrome",
+    "inputperam":"cypress run --spec **/Demo/*.cy.js --env firstName=Nagasesha,lastName=Dhanvi"
   },
   "author": "seshu",
   "license": "ISC",
