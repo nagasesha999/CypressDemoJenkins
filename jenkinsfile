@@ -1,11 +1,11 @@
 pipeline {
     agent any
-        parameters {
-        choice choices: ['test', 'cy:chrome','inputperam'], name: 'Module'
-        checkboxParameter(choice: 'Module',
-                    pipelineSubmitContent: '{"checkboxParameter": [{"key": "test","value": "--spec **/1-getting-started/*.cy.js"},{"key": "cy:chrome","value": "--spec **/2-advanced-examples/*.cy.js"},{"key": "inputPeram","value": "--spec **/Demo/*.cy.js --env firstName=Nagasesha,lastName=Dhanvi"}]}', description: '')
+        // parameters {
+        // choice choices: ['test', 'cy:chrome','inputperam'], name: 'Module'
+        // checkboxParameter(choice: 'Module',
+        //             pipelineSubmitContent: '{"checkboxParameter": [{"key": "test","value": "--spec **/1-getting-started/*.cy.js"},{"key": "cy:chrome","value": "--spec **/2-advanced-examples/*.cy.js"},{"key": "inputPeram","value": "--spec **/Demo/*.cy.js --env firstName=Nagasesha,lastName=Dhanvi"}]}', description: '')
         
-        }
+        // }
 
 
     // options {
@@ -21,7 +21,7 @@ pipeline {
         stage('Execute Test') {
             steps {
                   
-                bat 'npx cypress run %Module%'
+                bat 'npx cypress run'
             }
         }
         stage('Publish Report') {
