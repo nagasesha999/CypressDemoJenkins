@@ -12,7 +12,7 @@ pipeline {
     // }
 
     environment {
-        orangeCredentials = 'credentials'
+       orange_Credentials= orangeCredentials('credentials')
     }
 
     stages {
@@ -24,7 +24,7 @@ pipeline {
         stage('Execute Test') {
             steps {
                 catchError(stageResult: 'FAILURE') {
-                    bat 'npx cypress run --spec %Module% --env userName=%orangeCredentials_USR%,password=%orangeCredentials_PSW%'
+                    bat 'npx cypress run --spec %Module% --env userName=%orange_Credentials_USR%,password=%oorange_Credentials_PSW%'
 
                     // bat 'npx cypress run --spec %Module% --env userName=%USERID%,password=%USERPWD%'
                 }
