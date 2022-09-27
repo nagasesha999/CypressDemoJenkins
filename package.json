@@ -6,7 +6,8 @@
   "scripts": {
     "test": "cypress run",
     "cy:chrome":"cypress run --browser chrome",
-    "inputperam":"cypress run --spec **/Demo/*.cy.js --env firstName=Nagasesha,lastName=Dhanvi"
+    "demoAutomation":"cypress run --spec **/Demo/DemoAutomation.cy.js --env userName=Nagasesha,password=Dhanvi",
+    "orangeHrm":"cypress run --spec **/Demo/DemoOrengeHrmLogin.cy.js --env userName=Nagasesha@gmail.com,password=password"
   },
   "author": "seshu",
   "license": "ISC",

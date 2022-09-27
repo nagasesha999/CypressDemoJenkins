@@ -18,6 +18,9 @@ module.exports = defineConfig({
 
   env:{
     firstName:"Seshu",
-    lastName:"Reddy"
+    lastName:"Reddy",
+    userName:"seshu@test.com",
+    password:"password"
+
   }
 });
