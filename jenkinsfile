@@ -28,16 +28,16 @@ pipeline {
                 bat 'npx cypress run --spec %Module% --env userName=%USERID%,password=%USERPWD%'
             }
         }
-        stage('Publish Report') {
-            steps {
-                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'cypress/reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
-            }
-        }
-        stage('Archive Artifacts') {
-            steps {
-                archiveArtifacts artifacts: 'cypress/reports/html/index.html', followSymlinks: false
-            }
-        }
+        // stage('Publish Report') {
+        //     steps {
+        //         publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'cypress/reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
+        //     }
+        // }
+        // stage('Archive Artifacts') {
+        //     steps {
+        //         archiveArtifacts artifacts: 'cypress/reports/html/index.html', followSymlinks: false
+        //     }
+        // }
 
     //    stage('Copy Artifacts'){
     //       steps{
@@ -51,5 +51,18 @@ pipeline {
     //           }
     //       }
     //    }
+    }
+
+    stages{
+         stage('Publish Report') {
+            steps {
+                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'cypress/reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
+            }
+        }
+        stage('Archive Artifacts') {
+            steps {
+                archiveArtifacts artifacts: 'cypress/reports/html/index.html', followSymlinks: false
+            }
+        }
     }
 }
