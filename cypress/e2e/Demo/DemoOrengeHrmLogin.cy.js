@@ -5,6 +5,7 @@ describe('Demo orange HRM practice',function(){
         cy.get('[name="password"]').type(Cypress.env('password'), {log:false})
         cy.screenshot({capture:'runner'})
         cy.get('button.orangehrm-login-button').click()
+        cy.get('span h6').should('have.text','PIM')
         
     })
 })
