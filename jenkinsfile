@@ -23,7 +23,7 @@ pipeline {
         }
         stage('Execute Test') {
             steps {
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                catchError(stageResult: 'FAILURE') {
                     // bat 'npx cypress run --spec %Module% --env userName=%orangeCredentials_USR%,password=%orangeCredentials_PSW%'
 
                     bat 'npx cypress run --spec %Module% --env userName=%USERID%,password=%USERPWD%'
