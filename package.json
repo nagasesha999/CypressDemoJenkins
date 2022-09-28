@@ -7,7 +7,7 @@
     "test": "cypress run",
     "cy:chrome":"cypress run --browser chrome",
     "demoAutomation":"cypress run --spec **/Demo/DemoAutomation.cy.js --env userName=Nagasesha,password=Dhanvi",
-    "orangeHrm":"cypress run --spec **/Demo/DemoOrengeHrmLogin.cy.js --env userName=Nagasesha@gmail.com,password=password"
+    "orangeHrm":"cypress run --spec **/Demo/DemoOrengeHrmLogin.cy.js --env userName=Admin,password=admin123"
   },
   "author": "seshu",
   "license": "ISC",
