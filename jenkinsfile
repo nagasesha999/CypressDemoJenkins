@@ -12,7 +12,7 @@ pipeline {
     // }
 
     environment {
-       orange_Credentials= credentials('credentials')
+       orange_Credentials= credentials('Credentials')
     }
 
     stages {
