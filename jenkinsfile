@@ -11,9 +11,9 @@ pipeline {
     //     copyArtifactPermission 'cypresspractice'
     // }
 
-    // environment {
-    //    orange_Credentials= orangeCredentials('credentials')
-    // }
+    environment {
+       orange_Credentials= credentials('credentials')
+    }
 
     stages {
         stage('Install Dependencies') {
@@ -24,9 +24,9 @@ pipeline {
         stage('Execute Test') {
             steps {
                 catchError(stageResult: 'FAILURE') {
-                    // bat 'npx cypress run --spec %Module% --env userName=%orange_Credentials_USR%,password=%oorange_Credentials_PSW%'
+                    bat 'npx cypress run --spec %Module% --env userName=%orange_Credentials_USR%,password=%oorange_Credentials_PSW%'
 
-                    bat 'npx cypress run --spec %Module% --env userName=%USERID%,password=%USERPWD%'
+                    // bat 'npx cypress run --spec %Module% --env userName=%USERID%,password=%USERPWD%'
                 }
             }
         }
